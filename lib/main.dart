@@ -17,7 +17,14 @@ class ExpensesApp extends StatelessWidget {
       home: const MyHomePage(),
       theme: ThemeData(
         useMaterial3: false,
+        fontFamily: 'OpenSans',
         appBarTheme: AppBarTheme(
+          titleTextStyle: TextStyle(
+            fontFamily: 'Quicksand',
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+          ),
           backgroundColor: Colors.purple,
           foregroundColor: Colors.white,
         ),
@@ -39,9 +46,14 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final _transactions = [
-    Transaction(id: 't1', title: 'Shoes', value: 69.99, date: DateTime.now()),
-    Transaction(id: 't2', title: 'Light', value: 59.00, date: DateTime.now()),
+  final List<Transaction> _transactions = [
+    //Transaction(id: 't1', title: 'Sapatos', value: 220, date: DateTime.now()),
+    //Transaction(
+    //  id: 't2',
+    //  title: 'Conta de Luz',
+    //  value: 180,
+    // date: DateTime.now(),
+    //),
   ];
 
   _addTransaction(String title, double value) {
@@ -72,7 +84,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Personal Expenses'),
+        title: const Text('Despesas Pessoais'),
         actions: [
           IconButton(
             icon: const Icon(Icons.add),
@@ -88,7 +100,7 @@ class _MyHomePageState extends State<MyHomePage> {
               child: Card(
                 color: Colors.blue,
                 elevation: 5,
-                child: Text('Graphic'),
+                child: Text('Gráfico'),
               ),
             ),
             TransactionList(_transactions),
