@@ -1,4 +1,4 @@
-# Expenses App
+# Expenses App (WIP)
 
 A new Flutter project.
 
