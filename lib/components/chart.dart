@@ -43,15 +43,21 @@ class Chart extends StatelessWidget {
     return Card(
       margin: EdgeInsets.all(20),
       color: const Color.fromARGB(255, 153, 196, 232),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: groupedTransactions.map((tr) {
-          return ChartBar(
-            label: tr['day'] as String,
-            value: tr['value'] as double,
-            percentage: (tr['value'] as double) / _weekTotalValue,
-          );
-        }).toList(),
+      child: Padding(
+        padding: const EdgeInsets.all(10),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: groupedTransactions.map((tr) {
+            return Flexible(
+              fit: FlexFit.tight,
+              child: ChartBar(
+                label: tr['day'] as String,
+                value: tr['value'] as double,
+                percentage: (tr['value'] as double) / _weekTotalValue,
+              ),
+            );
+          }).toList(),
+        ),
       ),
     );
   }
