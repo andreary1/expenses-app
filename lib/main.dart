@@ -5,6 +5,7 @@ import 'dart:math';
 import 'components/transaction_list.dart';
 import 'models/transaction.dart';
 import 'package:flutter/widgets.dart';
+import 'package:intl/intl.dart';
 
 main() => runApp(ExpensesApp());
 
@@ -47,32 +48,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final List<Transaction> _transactions = [
-    Transaction(
-      id: 't1',
-      title: 'Sapatos',
-      value: 220,
-      date: DateTime.now().subtract(Duration(days: 3)),
-    ),
-    Transaction(
-      id: 't2',
-      title: 'Conta de Luz',
-      value: 180,
-      date: DateTime.now().subtract(Duration(days: 5)),
-    ),
-    Transaction(
-      id: 't3',
-      title: 'Cartão',
-      value: 180,
-      date: DateTime.now().subtract(Duration(days: 5)),
-    ),
-    Transaction(
-      id: 't4',
-      title: 'Restaurante',
-      value: 120,
-      date: DateTime.now().subtract(Duration(days: 5)),
-    ),
-  ];
+  final List<Transaction> _transactions = [];
 
   List<Transaction> get _recentTransactions {
     return _transactions.where((tr) {
@@ -80,12 +56,12 @@ class _MyHomePageState extends State<MyHomePage> {
     }).toList();
   }
 
-  _addTransaction(String title, double value) {
+  _addTransaction(String title, double value, DateTime date) {
     final newTransaction = Transaction(
       id: Random().nextDouble().toString(),
       title: title,
       value: value,
-      date: DateTime.now(),
+      date: date,
     );
 
     setState(() {
@@ -99,7 +75,9 @@ class _MyHomePageState extends State<MyHomePage> {
     showModalBottomSheet(
       context: context,
       builder: (_) {
-        return TransactionForm(_addTransaction);
+        return TransactionForm(
+          _addTransaction as void Function(String p1, double p2, DateTime p3),
+        );
       },
     );
   }
