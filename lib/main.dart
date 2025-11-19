@@ -104,6 +104,16 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                "Total Gasto: ${NumberFormat.currency(locale: 'pt_BR', symbol: 'R\$').format(_transactions.fold(0.0, (sum, tr) => sum + tr.value))}",
+                style: const TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
             Chart(_transactions),
             TransactionList(_transactions, _removeTransaction),
           ],
